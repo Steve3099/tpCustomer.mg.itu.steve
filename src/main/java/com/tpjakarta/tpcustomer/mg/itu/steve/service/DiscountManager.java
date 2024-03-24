@@ -1,10 +1,10 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
 package com.tpjakarta.tpcustomer.mg.itu.steve.service;
 
-import com.tpjakarta.tpcustomer.mg.itu.steve.entity.Customer;
+import com.tpjakarta.tpcustomer.mg.itu.steve.entity.Discount;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -13,33 +13,32 @@ import jakarta.transaction.Transactional;
 import java.util.List;
 
 /**
- * Façade pour gérer les Customers.
  *
  * @author Steve
  */
 @RequestScoped
-public class CustomerManager {
+public class DiscountManager {
 
     @PersistenceContext
     private EntityManager em;
 
-    public List<Customer> getAllCustomers() {
-        Query query = em.createNamedQuery("Customer.findAll");
+    public List<Discount> getAllDiscounts() {
+        Query query = em.createNamedQuery("Discount.findAll");
         return query.getResultList();
     }
 
     @Transactional
-    public Customer update(Customer customer) {
-        return em.merge(customer);
+    public Discount update(Discount discount) {
+        return em.merge(discount);
     }
 
     @Transactional
-    public void persist(Customer customer) {
-        em.persist(customer);
+    public void persist(Discount discount) {
+        em.persist(discount);
     }
 
-    public Customer findById(int idCustomer) {
-        return em.find(Customer.class, idCustomer);
+    public Discount findById(String code) {
+        return em.find(Discount.class, code);
     }
-
+    
 }
